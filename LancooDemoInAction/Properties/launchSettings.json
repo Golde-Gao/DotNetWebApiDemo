@@ -1,12 +1,4 @@
 ﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:59992",
-      "sslPort": 44390
-    }
-  },
   "profiles": {
     "LancooDemoInAction": {
       "commandName": "Project",
