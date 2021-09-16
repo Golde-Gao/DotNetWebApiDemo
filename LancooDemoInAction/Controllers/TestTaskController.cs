@@ -1,4 +1,5 @@
 ﻿using LancooDemoInAction.ModelContexts;
+using LancooDemoInAction.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,16 +15,16 @@ namespace LancooDemoInAction.Controllers
     public class TestTaskController : ControllerBase
     {
 
-        private readonly PContext _context;
-        public TestTaskController(PContext context)
+        private readonly ITestTaskRepository _testTaskRep;
+        public TestTaskController(ITestTaskRepository testTaskRep)
         {
-            _context = context ?? throw new ArgumentNullException(nameof(context));
+            _testTaskRep = testTaskRep ?? throw new ArgumentNullException(nameof(testTaskRep));
         }
-        [HttpGet("{taskName}")]
-        //https://localhost:5001/api/TestTask/%E8%8B%B1%E8%AF%AD%E8%80%83%E7%82%B9%E8%AF%86%E5%88%AB%E6%B5%8B%E8%AF%95%EF%BC%88%E5%8D%95%E9%80%89%E9%A2%98%EF%BC%898.30
-        public async Task<ActionResult> GetTestTasks(string taskName)
+        [HttpGet("{taskId}")]
+        //http://localhost:5000/api/TestTask/1000005
+        public async Task<ActionResult> GetTestTasks(int taskId)
         {
-            var testTask = await this._context.TaskView.Where(tt => tt.TaskName == taskName).ToListAsync();
+            var testTask = await this._testTaskRep.GetTestTaskByIDAsync(taskId);
             if (testTask == null)
             {
                 return NotFound();
