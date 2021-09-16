@@ -7,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using LancooDemoInAction.ViewModel;
 
 namespace LancooDemoInAction.Controllers
 {
@@ -15,21 +17,24 @@ namespace LancooDemoInAction.Controllers
     public class TestTaskController : ControllerBase
     {
 
+        private readonly IMapper _mapper;
         private readonly ITestTaskRepository _testTaskRep;
-        public TestTaskController(ITestTaskRepository testTaskRep)
+        public TestTaskController(ITestTaskRepository testTaskRep, IMapper mapper)
         {
-            _testTaskRep = testTaskRep ?? throw new ArgumentNullException(nameof(testTaskRep));
+            this._testTaskRep = testTaskRep ?? throw new ArgumentNullException(nameof(testTaskRep));
+            this._mapper = mapper ?? throw new ArgumentException(nameof(mapper));
         }
-        [HttpGet("{taskId}")]
+        [HttpGet(template: @"{taskId:int}")]
         //http://localhost:5000/api/TestTask/1000005
         public async Task<ActionResult> GetTestTasks(int taskId)
         {
             var testTask = await this._testTaskRep.GetTestTaskByIDAsync(taskId);
+            var testTaskViewModel = this._mapper.Map<TestTaskViewModel>(testTask);
             if (testTask == null)
             {
                 return NotFound();
             }
-            return Ok(testTask);
+            return Ok(testTaskViewModel);
         }
     }
 }
