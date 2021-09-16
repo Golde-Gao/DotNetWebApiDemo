@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
+using Microsoft.IdentityModel.Tokens;
 
 namespace LancooDemoInAction
 {
@@ -25,6 +26,10 @@ namespace LancooDemoInAction
             services.AddDbContext<PContext>();
             services.AddScoped<ITestTaskRepository, TestTaskRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddAuthentication("Bearer").AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = new TokenValidationParameters { };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -49,7 +54,7 @@ namespace LancooDemoInAction
 
             //app.UseHttpsRedirection();
             app.UseStaticFiles();
-                                                                                                                 
+
             app.UseRouting();
 
             app.UseAuthorization();
