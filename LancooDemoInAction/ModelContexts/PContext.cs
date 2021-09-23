@@ -1,11 +1,5 @@
-﻿using System;
+﻿using LancooDemoInAction.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using LancooDemoInAction.Models;
-
-// Code scaffolded by EF Core assumes nullable reference types (NRTs) are not used or disabled.
-// If you have enabled NRTs for your project, then un-comment the following line:
-// #nullable disable
 
 namespace LancooDemoInAction.ModelContexts
 {
@@ -63,14 +57,37 @@ namespace LancooDemoInAction.ModelContexts
         public virtual DbSet<StatisticsKnowledgeView> StatisticsKnowledgeView { get; set; }
         public virtual DbSet<StatisticsQuestionType> StatisticsQuestionType { get; set; }
         public virtual DbSet<StatisticsQuestionTypeAnalysisView> StatisticsQuestionTypeAnalysisView { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationKnowledgeLose> StatisticsTtuTestQuestionRecRelationKnowledgeLose { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationKnowledgeWrong> StatisticsTtuTestQuestionRecRelationKnowledgeWrong { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationType> StatisticsTtuTestQuestionRecRelationType { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeLose> StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeLose { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeWrong> StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeWrong { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeLoseView> StatisticsTtuTestQuestionRecRelationTypeLoseView { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeView> StatisticsTtuTestQuestionRecRelationTypeView { get; set; }
-        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeWrongView> StatisticsTtuTestQuestionRecRelationTypeWrongView { get; set; }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationKnowledgeLose>
+            StatisticsTtuTestQuestionRecRelationKnowledgeLose { get; set; }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationKnowledgeWrong>
+            StatisticsTtuTestQuestionRecRelationKnowledgeWrong { get; set; }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationType> StatisticsTtuTestQuestionRecRelationType
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeLose>
+            StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeLose { get; set; }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeWrong>
+            StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeWrong { get; set; }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeLoseView>
+            StatisticsTtuTestQuestionRecRelationTypeLoseView { get; set; }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeView> StatisticsTtuTestQuestionRecRelationTypeView
+        {
+            get;
+            set;
+        }
+
+        public virtual DbSet<StatisticsTtuTestQuestionRecRelationTypeWrongView>
+            StatisticsTtuTestQuestionRecRelationTypeWrongView { get; set; }
+
         public virtual DbSet<TaskAndUserView> TaskAndUserView { get; set; }
         public virtual DbSet<TaskDontRepeatConfig> TaskDontRepeatConfig { get; set; }
         public virtual DbSet<TaskJoinView> TaskJoinView { get; set; }
@@ -89,8 +106,9 @@ namespace LancooDemoInAction.ModelContexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("server=127.0.0.1;initial catalog=AllSubjectTest;user id=sa;password=UJM@asd09;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http: //go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer(
+                    "server=127.0.0.1;initial catalog=AllSubjectTest;user id=sa;password=UJM@asd09;");
             }
         }
 
@@ -293,7 +311,8 @@ namespace LancooDemoInAction.ModelContexts
 
                 entity.Property(e => e.ConfShiTiCategoryId).HasColumnName("Conf_ShiTiCategoryID");
 
-                entity.Property(e => e.ConfShiTiCategoryTtuTestQuestionId).HasColumnName("Conf_ShiTiCategoryTTU_TestQuestionID");
+                entity.Property(e => e.ConfShiTiCategoryTtuTestQuestionId)
+                    .HasColumnName("Conf_ShiTiCategoryTTU_TestQuestionID");
 
                 entity.Property(e => e.TtuTestQuestionId).HasColumnName("TTU_TestQuestionID");
 
@@ -1045,7 +1064,8 @@ namespace LancooDemoInAction.ModelContexts
 
                 entity.Property(e => e.KnowledgeType).HasMaxLength(100);
 
-                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId).HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
+                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId)
+                    .HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
             });
 
             modelBuilder.Entity<StatisticsTtuTestQuestionRecRelationTypeKnowledgeTypeWrong>(entity =>
@@ -1060,7 +1080,8 @@ namespace LancooDemoInAction.ModelContexts
 
                 entity.Property(e => e.KnowledgeType).HasMaxLength(100);
 
-                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId).HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
+                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId)
+                    .HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
             });
 
             modelBuilder.Entity<StatisticsTtuTestQuestionRecRelationTypeLoseView>(entity =>
@@ -1075,7 +1096,8 @@ namespace LancooDemoInAction.ModelContexts
 
                 entity.Property(e => e.SquestionTypeId).HasColumnName("SQuestionTypeID");
 
-                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId).HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
+                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId)
+                    .HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
 
                 entity.Property(e => e.TestEntityId).HasColumnName("TestEntityID");
 
@@ -1123,7 +1145,8 @@ namespace LancooDemoInAction.ModelContexts
 
                 entity.Property(e => e.SquestionTypeId).HasColumnName("SQuestionTypeID");
 
-                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId).HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
+                entity.Property(e => e.StatisticsTtuTestQuestionRecRelationTypeId)
+                    .HasColumnName("Statistics_TTU_TestQuestionRecRelationTypeID");
 
                 entity.Property(e => e.TestEntityId).HasColumnName("TestEntityID");
 
@@ -1319,7 +1342,8 @@ namespace LancooDemoInAction.ModelContexts
                     .HasColumnName("ID")
                     .HasComment("id property,auto-increment start start from 100,000,000");
 
-                entity.Property(e => e.AllStem).HasComment("把试题XML拆分，这里是拆得的所有Stem字段文本内容，且是经过相关处理，取出一些格式后的文本。其他几个ALLXXXX的字段于此一样");
+                entity.Property(e => e.AllStem)
+                    .HasComment("把试题XML拆分，这里是拆得的所有Stem字段文本内容，且是经过相关处理，取出一些格式后的文本。其他几个ALLXXXX的字段于此一样");
 
                 entity.Property(e => e.ConfSubjectQuestionTypeGenreId)
                     .HasColumnName("Conf_SubjectQuestionTypeGenreID")
@@ -1398,7 +1422,8 @@ namespace LancooDemoInAction.ModelContexts
                 entity.Property(e => e.Name)
                     .IsRequired()
                     .HasMaxLength(60)
-                    .HasComment("任务名称是不能重复的，测试人不存在分学科的问题，因为任务页自然是不分学科的，但是实际测题的时候，是不提供不同学科同时测试的。所有的任务名字不能存在重复！！！！就只这么粗暴，请起名字的时候注意，这里在实现的时候也要加唯一性验证");
+                    .HasComment(
+                        "任务名称是不能重复的，测试人不存在分学科的问题，因为任务页自然是不分学科的，但是实际测题的时候，是不提供不同学科同时测试的。所有的任务名字不能存在重复！！！！就只这么粗暴，请起名字的时候注意，这里在实现的时候也要加唯一性验证");
 
                 entity.Property(e => e.ParentTaskId)
                     .HasColumnName("ParentTaskID")
@@ -1479,9 +1504,11 @@ namespace LancooDemoInAction.ModelContexts
                 entity.Property(e => e.IndexTitle)
                     .IsRequired()
                     .HasMaxLength(200)
-                    .HasComment("小题信息，此处0即代表整个试题。1,2,3,4,5... ...表示一级小题划分；1-0，表示一级小题的整体，1-1表示一级小题的第一子小题；其他情况以此推至第n题的第n级子小题，当然，此处可能用到的最多估计也就是一级小题了，防止后续有更细致的划分方式，此处做如此设计。");
+                    .HasComment(
+                        "小题信息，此处0即代表整个试题。1,2,3,4,5... ...表示一级小题划分；1-0，表示一级小题的整体，1-1表示一级小题的第一子小题；其他情况以此推至第n题的第n级子小题，当然，此处可能用到的最多估计也就是一级小题了，防止后续有更细致的划分方式，此处做如此设计。");
 
-                entity.Property(e => e.InnerIndex).HasComment("配合index，给这个TTU_TestQuestionIndex排序用的。Index字段只是代表题号的文本信息，无法用作排序");
+                entity.Property(e => e.InnerIndex)
+                    .HasComment("配合index，给这个TTU_TestQuestionIndex排序用的。Index字段只是代表题号的文本信息，无法用作排序");
 
                 entity.Property(e => e.TaskCreateTime).HasColumnType("datetime");
 

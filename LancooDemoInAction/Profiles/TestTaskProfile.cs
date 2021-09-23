@@ -8,7 +8,7 @@ using LancooDemoInAction.ViewModel;
 
 namespace LancooDemoInAction.Profiles
 {
-    public class TestTaskProfile:Profile
+    public class TestTaskProfile : Profile
     {
         public TestTaskProfile()
         {
@@ -16,8 +16,11 @@ namespace LancooDemoInAction.Profiles
                 .ForMember(
                     dest => dest.Name,
                     opt => opt.MapFrom(src => src.TaskName))
-                .ForMember(dest=>dest.Id,
-                    opt=>opt.MapFrom(src=>src.TaskId));
+                .ForMember(dest => dest.Id,
+                    opt => opt.MapFrom(src => src.TaskId))
+                .ForMember(dest => dest.ParentTaskName,
+                    opt => opt.MapFrom(src =>
+                          src.ParentTaskName ?? ""));
 
         }
     }
