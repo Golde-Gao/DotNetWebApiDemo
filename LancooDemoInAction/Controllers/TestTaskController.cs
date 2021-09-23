@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LancooDemoInAction.ViewModel;
+using LancooDemoInAction.ViewModelParameter;
 
 namespace LancooDemoInAction.Controllers
 {
@@ -26,15 +27,24 @@ namespace LancooDemoInAction.Controllers
         }
         [HttpGet(template: @"{taskId:int}")]
         //http://localhost:5000/api/TestTask/1000005
-        public async Task<ActionResult> GetTestTasks(int taskId)
+        public async Task<ActionResult> GetTestTask(int taskId)
         {
-            var testTask = await this._testTaskRep.GetTestTaskByIDAsync(taskId);
-            var testTaskViewModel = this._mapper.Map<TestTaskViewModel>(testTask);
+            var testTask = await this._testTaskRep.GetTestTaskByIdAsync(taskId);
             if (testTask == null)
             {
                 return NotFound();
-            }
+            } 
+
+            var testTaskViewModel = this._mapper.Map<TestTaskViewModel>(testTask);
+            
             return Ok(testTaskViewModel);
+        }
+        [HttpGet(Name = nameof(GetTestTasks))]
+        [HttpHead]
+        public async Task<ActionResult> GetTestTasks([FromQuery] TestTaskViewModelParameter parameters)
+        {
+            var companies = await _testTaskRep.GetCompaniesAsync(parameters); 
+            return Ok(companies);
         }
     }
 }
