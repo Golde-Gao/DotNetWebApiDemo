@@ -26,10 +26,10 @@ namespace LancooDemoInAction
             services.AddDbContext<PContext>();
             services.AddScoped<ITestTaskRepository, TestTaskRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddAuthentication("Bearer").AddJwtBearer(o =>
-            {
-                o.TokenValidationParameters = new TokenValidationParameters { };
-            });
+            //services.AddAuthentication("Bearer").AddJwtBearer(o =>
+            //{
+            //    o.TokenValidationParameters = new TokenValidationParameters { };
+            //});
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +57,7 @@ namespace LancooDemoInAction
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
